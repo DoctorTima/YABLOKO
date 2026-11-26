@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Что может муниципальный депутат?</title>
+<link rel="preload" href="fonts/gilroy/Gilroy-Light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/gilroy/Gilroy-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Gilroy';font-weight:300;font-style:normal;font-display:swap;ascent-override:86%;descent-override:16%;line-gap-override:0%;src:url('fonts/gilroy/Gilroy-Light.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:800;font-style:normal;font-display:swap;ascent-override:86%;descent-override:16%;line-gap-override:0%;src:url('fonts/gilroy/Gilroy-ExtraBold.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:900;font-style:normal;font-display:swap;ascent-override:86%;descent-override:16%;line-gap-override:0%;src:url('fonts/gilroy/Gilroy-ExtraBold.woff2') format('woff2')}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{color-scheme:light;-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:#F6F4EE;color:#18251E;font-family:'Gilroy',sans-serif;font-weight:300;font-size:17px;line-height:25px;-webkit-text-stroke:.012em currentColor}
+h1,h2,h3,p,ul,ol{margin:0}
+b,strong,h1,h2,h3,.b{font-weight:800;-webkit-text-stroke:0}
+a{color:inherit}
+button{font-family:'Gilroy',sans-serif;color:inherit}
+:focus-visible{outline:2px solid #08803D;outline-offset:2px}
+:focus:not(:focus-visible){outline:none}
+
+/* шапка */
+.top{background:#202123;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.top img{height:28px;width:auto;display:block}
+.top span{color:#D9D9DB;font-size:14px;line-height:20px;-webkit-text-stroke:.017em currentColor}
+
+.wrap{max-width:1440px;margin:0 auto;padding:0 20px}
+.sec{padding:48px 0;border-top:1.5px solid #DDD7C9}
+.sec:first-child{border-top:0}
+
+.kick{font-weight:800;-webkit-text-stroke:0;text-transform:uppercase;letter-spacing:.05em;font-size:13px;line-height:18px;color:#08803D;margin-bottom:12px}
+h1{font-size:40px;line-height:44px;letter-spacing:-.01em}
+h2{font-size:28px;line-height:32px;letter-spacing:-.005em}
+.h3{font-size:22px;line-height:26px}
+.lead{margin-top:16px;color:#066A32;-webkit-text-stroke:.017em currentColor;max-width:34em}
+.cap{font-size:13px;line-height:18px;color:#4E5751;-webkit-text-stroke:.017em currentColor}
+
+.card{background:#FFFFFF;border:1.5px solid #DDD7C9;border-radius:14px;padding:20px}
+.card.acc{background:#E3F1E7;border-color:#08803D}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:10px;border:1.5px solid transparent;font:800 17px/22px 'Gilroy',sans-serif;-webkit-text-stroke:0;text-decoration:none;cursor:pointer;text-align:center}
+.btn-primary{background:#08803D;color:#FFFFFF;border-color:#08803D}
+.btn-sec{background:transparent;color:#18251E;border-color:#18251E}
+.btn-sec-dark{background:transparent;color:#FFFFFF;border-color:#FFFFFF}
+
+.basis{display:inline-block;margin-top:14px;background:#EFEBE1;border-radius:8px;padding:6px 10px;font-size:13px;line-height:18px;color:#4E5751;-webkit-text-stroke:.017em currentColor}
+.basis a{color:#066A32;text-decoration:underline;text-underline-offset:2px}
+
+/* появление блоков */
+@keyframes yRise{from{opacity:0;transform:translateY(14px)}}
+@media (prefers-reduced-motion:no-preference){
+  .js .rv{opacity:0}
+  .js .rv.in{opacity:1;animation:yRise 280ms cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0ms)}
+  .rise{animation:yRise 280ms cubic-bezier(.2,.7,.2,1) both}
+}
+
+/* 4.1 обложка */
+.cover{padding-top:36px}
+.cover-grid{display:grid;gap:24px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{display:flex;flex-direction:column;gap:6px;min-width:0}
+.stat .num{font-weight:800;-webkit-text-stroke:0;font-size:40px;line-height:44px;letter-spacing:-.01em}
+.stat.wide{grid-column:1/-1}
+.stat.acc .num{color:#066A32}
+.cover-cta .btn{min-width:180px}
+
+/* 4.2 район */
+.progress{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.progress .txt{font-weight:800;-webkit-text-stroke:0;font-size:15px;line-height:20px}
+.bar{display:flex;gap:3px}
+.bar i{display:block;width:14px;height:6px;border-radius:3px;background:#DDD7C9}
+.bar i.on{background:#066A32}
+
+.map{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"ill" "chips" "concl";gap:16px;margin-top:20px}
+.ill-scroll{grid-area:ill;margin:0 -20px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;background:#EFEBE1;border-top:1.5px solid #DDD7C9;border-bottom:1.5px solid #DDD7C9;overscroll-behavior-x:contain}
+.ill{position:relative;height:380px;width:1441px;-webkit-user-select:none;user-select:none}
+.ill-scroll{scrollbar-color:#DDD7C9 #EFEBE1}
+.ill-scroll::-webkit-scrollbar{height:8px}
+.ill-scroll::-webkit-scrollbar-track{background:#EFEBE1}
+.ill-scroll::-webkit-scrollbar-thumb{background:#DDD7C9;border-radius:4px}
+.ill svg{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+.pin{position:absolute;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;border:0;padding:0;background:#CFE5D6;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s ease;z-index:1}
+.pin i{box-sizing:border-box;width:44px;height:44px;border-radius:50%;background:#08803D;border:3px solid #FFFFFF;color:#FFFFFF;font:800 20px/1 'Gilroy',sans-serif;font-style:normal;-webkit-text-stroke:0;display:flex;align-items:center;justify-content:center}
+.pin.vis i{background:#066A32}
+.pin.sel{background:#EBD3DA;transform:translate(-50%,-50%) scale(1.12);z-index:2}
+.pin.sel i{background:#8B1D3F}
+@media (prefers-reduced-motion:reduce){.pin{transition:none}}
+
+.chips{grid-area:chips;list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+.chip{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:6px 14px 6px 6px;border-radius:22px;background:#FFFFFF;border:1.5px solid #DDD7C9;font:800 15px/20px 'Gilroy',sans-serif;-webkit-text-stroke:0;color:#18251E;cursor:pointer;text-align:left}
+.chip .cn{flex:none;width:30px;height:30px;border-radius:50%;background:#08803D;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1}
+.chip.vis .cn{background:#066A32}
+.chip.sel{border-color:#8B1D3F}
+.chip.sel .cn{background:#8B1D3F}
+
+.concl{grid-area:concl;-webkit-text-stroke:.017em currentColor}
+
+/* карточка места: нижний лист на телефоне */
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:50;max-height:72vh;display:flex;flex-direction:column;background:#FFFFFF;border-top:1.5px solid #DDD7C9;border-radius:14px 14px 0 0}
+@supports (height:1dvh){.sheet{max-height:72dvh}}
+.sheet-head{flex:none;position:relative;height:44px;touch-action:none}
+.handle{position:absolute;left:50%;top:10px;width:44px;height:5px;margin-left:-22px;border-radius:3px;background:#DDD7C9}
+.close{position:absolute;right:6px;top:2px;width:44px;height:44px;border:0;border-radius:10px;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.sheet-body{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 20px 24px}
+.place-h{display:flex;align-items:center;gap:12px;padding-right:36px}
+.place-h .no{flex:none;width:44px;height:44px;border-radius:50%;background:#8B1D3F;border:3px solid #EBD3DA;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font:800 18px/1 'Gilroy',sans-serif;-webkit-text-stroke:0}
+.place-h h3:focus,h2:focus{outline:none}
+.lbl{margin-top:18px;font-weight:800;-webkit-text-stroke:0;text-transform:uppercase;letter-spacing:.05em;font-size:13px;line-height:18px;color:#08803D}
+.does{list-style:none;padding:0;margin-top:8px;display:flex;flex-direction:column;gap:10px}
+.does li{position:relative;padding-left:20px}
+.does li::before{content:"";position:absolute;left:0;top:10px;width:9px;height:9px;border-radius:2px;background:#08803D}
+.limit{margin-top:16px;padding:12px 14px;border-left:3px solid #8B1D3F;background:#F6F4EE;border-radius:0 10px 10px 0;color:#8B1D3F;-webkit-text-stroke:.017em currentColor}
+.place .next{margin-top:20px;width:100%}
+
+/* 4.3 депутат */
+.grid3{display:grid;gap:12px;margin-top:24px}
+.dep{display:flex;flex-direction:column;align-items:flex-start}
+.dep svg{display:block;margin-bottom:14px}
+.dep p:first-of-type{flex:1}
+
+/* 4.4 правда или миф */
+.grid2{display:grid;gap:12px;margin-top:24px}
+.q{display:flex;flex-direction:column}
+.q-btns{display:flex;gap:10px;margin-top:16px}
+.q-btns .btn{flex:1;min-width:0}
+.q-btns .btn[disabled]{cursor:default;opacity:1}
+.q-btns .btn.ok{background:#08803D;border-color:#08803D;color:#FFFFFF}
+.q-btns .btn.pick{border-width:2.5px}
+.q-btns .btn.pick-part{border-color:#8B1D3F;color:#8B1D3F;border-width:2.5px}
+.q-res{margin-top:16px}
+.q-v{font-weight:800;-webkit-text-stroke:0;font-size:22px;line-height:26px}
+.q-v.ok{color:#08803D}
+.q-v.part{color:#8B1D3F}
+.q-ex{margin-top:6px}
+
+/* 4.5 муниципальный фильтр */
+.filter-grid{display:grid;gap:24px}
+.filter-grid .body{margin-top:16px;max-width:36em}
+.stats2{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}
+
+/* 4.6 финал */
+.final{background:#18251E;color:#FFFFFF;padding:56px 0}
+.final .kick{color:#C9A33B}
+.final p.body{margin-top:16px;max-width:36em;-webkit-text-stroke:.017em currentColor}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.cta .btn{flex:1 1 240px}
+
+/* 4.7 основания */
+.bases{padding:28px 0 40px}
+.bases details{border:1.5px solid #DDD7C9;border-radius:14px;background:#FFFFFF}
+.bases summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:0 16px 0 20px;cursor:pointer;font-weight:800;-webkit-text-stroke:0;font-size:15px;line-height:20px;border-radius:14px}
+.bases summary::-webkit-details-marker{display:none}
+.bases details[open] summary svg{transform:rotate(180deg)}
+.bases ol{padding:0 20px 20px 40px;display:flex;flex-direction:column;gap:12px}
+.bases li{font-size:13px;line-height:18px;color:#4E5751;-webkit-text-stroke:.017em currentColor}
+.bases li a{display:block;color:#066A32;word-break:break-all;text-underline-offset:2px}
+
+/* десктоп */
+@media (min-width:1024px){
+  body{font-size:19px;line-height:28px}
+  .top{height:72px;padding:0 32px}
+  .top img{height:36px}
+  .top span{font-size:16px;line-height:22px}
+  .wrap{padding:0 32px}
+  .sec{padding:88px 0}
+  .kick{font-size:15px;line-height:20px;margin-bottom:16px}
+  h1{font-size:72px;line-height:76px}
+  h2{font-size:44px;line-height:48px}
+  .h3{font-size:26px;line-height:30px}
+  .lead{margin-top:24px}
+  .cap,.basis,.bases li{font-size:14px;line-height:20px}
+  .card{padding:24px}
+  .cover{padding-top:72px}
+  .cover-grid{grid-template-areas:"text" "cta" "stats";row-gap:32px}
+  .cover-text{grid-area:text}
+  .cover-cta{grid-area:cta}
+  .stats{grid-area:stats;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.6fr)}
+  .stat.wide{grid-column:auto}
+  .stat .num{font-size:44px;line-height:48px}
+  .stats{gap:16px}
+  .progress .txt{font-size:16px}
+
+  .map{margin-top:24px;row-gap:16px;align-items:start}
+  .map.has-card{grid-template-columns:minmax(0,1fr) 420px;grid-template-rows:auto auto 1fr;grid-template-areas:"ill card" "chips card" "concl card";column-gap:24px}
+  .ill-scroll{margin:0;border:1.5px solid #DDD7C9;border-radius:14px}
+  .ill{width:max(100%,1300px);height:auto}
+  .ill::before{content:"";display:block;padding-top:26.3666%}
+  .ill-scroll{cursor:grab}
+  .ill-scroll.dragging{cursor:grabbing}
+  .chip{min-height:48px;border-radius:24px;padding:8px 18px 8px 8px;font-size:16px}
+  .sheet{grid-area:card;position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);border:1.5px solid #DDD7C9;border-radius:14px}
+  .sheet-head{touch-action:auto}
+  .handle{display:none}
+  .sheet-body{padding:0 24px 24px}
+  .place-h .no{width:48px;height:48px;font-size:20px}
+  .lbl{font-size:14px}
+
+  .grid3{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:36px}
+  .grid2{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:36px}
+  .q-v{font-size:26px;line-height:30px}
+  .filter-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);column-gap:64px;align-items:end}
+  .final{padding:88px 0}
+  .cta{margin-top:36px}
+  .cta .btn{flex:0 0 auto;min-width:280px}
+  .bases{padding:36px 0 56px}
+}
+@media (min-width:1024px) and (max-height:700px){.sheet{position:relative;top:auto}}
+@media (min-width:1200px){.stat .num{font-size:56px;line-height:58px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <img src="assets/yabloko-logo.png" alt="Яблоко" width="102" height="28">
+  <span>Короткий интерактив</span>
+</header>
+
+<main>
+  <!-- 4.1 Обложка -->
+  <section class="sec cover" id="cover" aria-labelledby="h-cover">
+    <div class="wrap cover-grid">
+      <div class="cover-text">
+        <p class="kick rv">КОРОТКИЙ ИНТЕРАКТИВ · МОСКОВСКОЕ ЯБЛОКО</p>
+        <h1 id="h-cover" class="rv" style="--d:60ms">Что может муниципальный депутат?</h1>
+        <p class="lead rv" style="--d:120ms">В каждом районе Москвы есть совет депутатов. Это самый близкий к жителям уровень власти: двор, дом, сквер у дома. Нажмите на место в районе и посмотрите, что здесь решает совет.</p>
+      </div>
+      <div class="stats">
+        <div class="card stat rv" style="--d:160ms"><span class="num">125</span><span class="cap">муниципальных округов, где в 2022 году выбирали советы</span></div>
+        <div class="card stat rv" style="--d:200ms"><span class="num">1417</span><span class="cap">депутатов избрали в 2022 году</span></div>
+        <div class="card acc stat wide rv" style="--d:240ms"><span class="num">Сентябрь 2027</span><span class="cap">следующие выборы</span></div>
+      </div>
+      <div class="cover-cta rv" style="--d:280ms"><a class="btn btn-primary" href="#district" aria-label="Начать">Начать</a></div>
+    </div>
+  </section>
+
+  <!-- 4.2 Район -->
+  <section class="sec district" id="district" aria-labelledby="h-district">
+    <div class="wrap">
+      <p class="kick rv">ТВОЙ РАЙОН</p>
+      <h2 id="h-district" class="rv" style="--d:60ms" tabindex="-1">Нажмите на место — что здесь решает совет?</h2>
+      <div class="progress">
+        <p class="txt" aria-live="polite">Посмотрено: <span id="cnt">0</span> из 10</p>
+        <div class="bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+
+      <div class="map" id="map">
+        <div class="ill-scroll" id="illScroll">
+          <div class="ill" id="ill">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 40 3110 820" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><rect x="0" y="0" width="3110" height="860" fill="#EFEBE1"/><rect x="450" y="400" width="400" height="320" fill="#DDD7C9"/><rect x="476" y="428" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="552" y="428" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="628" y="428" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="704" y="428" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="780" y="428" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="476" y="498" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="552" y="498" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="628" y="498" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="704" y="498" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="780" y="498" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="476" y="568" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="552" y="568" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="628" y="568" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="704" y="568" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="780" y="568" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="476" y="638" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="552" y="638" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="628" y="638" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="704" y="638" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="780" y="638" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="866" y="486" width="250" height="234" fill="#DDD7C9"/><rect x="890" y="512" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="972" y="512" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="1054" y="512" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="890" y="582" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="972" y="582" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="1054" y="582" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="890" y="652" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="972" y="652" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="1054" y="652" width="38" height="40" rx="2" fill="#F4F1EA"/><rect x="0" y="720" width="3110" height="72" fill="#F6F4EE"/><line x1="0" y1="721" x2="3110" y2="721" stroke="#DDD7C9" stroke-width="2"/><rect x="0" y="792" width="3110" height="8" fill="#4E5751"/><rect x="0" y="800" width="3110" height="60" fill="#DDD7C9"/><line x1="0" y1="828" x2="3110" y2="828" stroke="#FFFFFF" stroke-width="6" stroke-dasharray="60 40"/><rect x="34" y="262" width="392" height="14" fill="#DDD7C9"/><rect x="40" y="276" width="380" height="444" fill="#F4F1EA"/><rect x="40" y="696" width="380" height="24" fill="#DDD7C9"/><rect x="70" y="544" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="66" y="594" width="62" height="5" fill="#DDD7C9"/><rect x="158" y="544" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="154" y="594" width="62" height="5" fill="#DDD7C9"/><rect x="246" y="544" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="242" y="594" width="62" height="5" fill="#DDD7C9"/><rect x="334" y="544" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="330" y="594" width="62" height="5" fill="#DDD7C9"/><rect x="70" y="460" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="66" y="510" width="62" height="5" fill="#DDD7C9"/><rect x="158" y="460" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="154" y="510" width="62" height="5" fill="#DDD7C9"/><rect x="246" y="460" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="242" y="510" width="62" height="5" fill="#DDD7C9"/><rect x="334" y="460" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="330" y="510" width="62" height="5" fill="#DDD7C9"/><rect x="70" y="376" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="66" y="426" width="62" height="5" fill="#DDD7C9"/><rect x="158" y="376" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="154" y="426" width="62" height="5" fill="#DDD7C9"/><rect x="246" y="376" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="242" y="426" width="62" height="5" fill="#DDD7C9"/><rect x="334" y="376" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="330" y="426" width="62" height="5" fill="#DDD7C9"/><rect x="70" y="292" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="66" y="342" width="62" height="5" fill="#DDD7C9"/><rect x="158" y="292" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="154" y="342" width="62" height="5" fill="#DDD7C9"/><rect x="246" y="292" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="242" y="342" width="62" height="5" fill="#DDD7C9"/><rect x="334" y="292" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="330" y="342" width="62" height="5" fill="#DDD7C9"/><rect x="70" y="628" width="54" height="50" rx="2" fill="#AFC3C8"/><rect x="66" y="678" width="62" height="5" fill="#DDD7C9"/><rect x="144" y="616" width="76" height="10" fill="#4E5751"/><rect x="157" y="626" width="50" height="94" fill="#18251E"/><rect x="148" y="714" width="68" height="6" fill="#DDD7C9"/><rect x="228" y="622" width="186" height="68" rx="3" fill="#FFFFFF"/><rect x="228" y="622" width="186" height="68" rx="3" fill="none" stroke="#18251E" stroke-width="2"/><text x="321" y="649" font-family="Gilroy, sans-serif" font-weight="800" font-size="23" fill="#18251E" text-anchor="middle">Управляющая</text><text x="321" y="678" font-family="Gilroy, sans-serif" font-weight="800" font-size="23" fill="#18251E" text-anchor="middle">компания</text><line x1="24" y1="612" x2="106.4" y2="528" stroke="#4E5751" stroke-width="2"/><line x1="188.8" y1="612" x2="271.2" y2="528" stroke="#4E5751" stroke-width="2"/><line x1="353.6" y1="612" x2="436" y2="528" stroke="#4E5751" stroke-width="2"/><line x1="106.4" y1="528" x2="188.8" y2="444" stroke="#4E5751" stroke-width="2"/><line x1="271.2" y1="528" x2="353.6" y2="444" stroke="#4E5751" stroke-width="2"/><line x1="24" y1="444" x2="106.4" y2="360" stroke="#4E5751" stroke-width="2"/><line x1="188.8" y1="444" x2="271.2" y2="360" stroke="#4E5751" stroke-width="2"/><line x1="353.6" y1="444" x2="436" y2="360" stroke="#4E5751" stroke-width="2"/><line x1="106.4" y1="360" x2="188.8" y2="276" stroke="#4E5751" stroke-width="2"/><line x1="271.2" y1="360" x2="353.6" y2="276" stroke="#4E5751" stroke-width="2"/><line x1="24" y1="276" x2="106.4" y2="256" stroke="#4E5751" stroke-width="2"/><line x1="188.8" y1="276" x2="271.2" y2="256" stroke="#4E5751" stroke-width="2"/><line x1="353.6" y1="276" x2="436" y2="256" stroke="#4E5751" stroke-width="2"/><rect x="21" y="228" width="6" height="384" fill="#4E5751"/><rect x="103.4" y="228" width="6" height="384" fill="#4E5751"/><rect x="185.8" y="228" width="6" height="384" fill="#4E5751"/><rect x="268.2" y="228" width="6" height="384" fill="#4E5751"/><rect x="350.6" y="228" width="6" height="384" fill="#4E5751"/><rect x="433" y="228" width="6" height="384" fill="#4E5751"/><rect x="18" y="605" width="424" height="9" fill="#DDD7C9"/><line x1="18" y1="574" x2="442" y2="574" stroke="#4E5751" stroke-width="3"/><rect x="18" y="521" width="424" height="9" fill="#DDD7C9"/><line x1="18" y1="490" x2="442" y2="490" stroke="#4E5751" stroke-width="3"/><rect x="18" y="437" width="424" height="9" fill="#DDD7C9"/><line x1="18" y1="406" x2="442" y2="406" stroke="#4E5751" stroke-width="3"/><rect x="18" y="353" width="424" height="9" fill="#DDD7C9"/><line x1="18" y1="322" x2="442" y2="322" stroke="#4E5751" stroke-width="3"/><rect x="18" y="269" width="424" height="9" fill="#DDD7C9"/><line x1="18" y1="238" x2="442" y2="238" stroke="#4E5751" stroke-width="3"/><rect x="18" y="249" width="424" height="9" fill="#DDD7C9"/><line x1="18" y1="218" x2="442" y2="218" stroke="#4E5751" stroke-width="3"/><rect x="333.1" y="407.1" width="5.75" height="29.9" rx="2.875" fill="#18251E"/><rect x="341.15" y="407.1" width="5.75" height="29.9" rx="2.875" fill="#18251E"/><rect x="327.35" y="378.35" width="25.3" height="32.2" rx="10.35" fill="#08803D"/><circle cx="340" cy="372.6" r="7.82" fill="#E2C9A8"/><path d="M330 377 a10 9 0 0 1 20 0 z" fill="#FFFFFF"/><line x1="470" y1="754" x2="470" y2="662" stroke="#4E5751" stroke-width="5"/><line x1="492" y1="754" x2="492" y2="662" stroke="#4E5751" stroke-width="5"/><line x1="470" y1="734" x2="492" y2="734" stroke="#4E5751" stroke-width="4"/><line x1="470" y1="714" x2="492" y2="714" stroke="#4E5751" stroke-width="4"/><line x1="470" y1="694" x2="492" y2="694" stroke="#4E5751" stroke-width="4"/><line x1="470" y1="674" x2="492" y2="674" stroke="#4E5751" stroke-width="4"/><rect x="464" y="656" width="40" height="8" fill="#4E5751"/><line x1="468" y1="614" x2="468" y2="656" stroke="#4E5751" stroke-width="3"/><line x1="500" y1="614" x2="500" y2="656" stroke="#4E5751" stroke-width="3"/><path d="M460 616 l24 -26 l24 26 z" fill="#8B1D3F"/><path d="M504 656 L572 744 L590 744 L590 754 L566 754 L498 666 z" fill="#08803D"/><rect x="604" y="720" width="54" height="7" rx="2" fill="#4E5751"/><rect x="608" y="727" width="5" height="27" fill="#4E5751"/><rect x="649" y="727" width="5" height="27" fill="#4E5751"/><rect x="604" y="698" width="54" height="6" rx="2" fill="#4E5751"/><line x1="672" y1="754" x2="690" y2="636" stroke="#4E5751" stroke-width="5"/><line x1="708" y1="754" x2="690" y2="636" stroke="#4E5751" stroke-width="5"/><line x1="760" y1="754" x2="778" y2="636" stroke="#4E5751" stroke-width="5"/><line x1="796" y1="754" x2="778" y2="636" stroke="#4E5751" stroke-width="5"/><rect x="684" y="632" width="100" height="7" fill="#4E5751"/><line x1="718" y1="638" x2="718" y2="710" stroke="#4E5751" stroke-width="2"/><line x1="748" y1="638" x2="748" y2="710" stroke="#4E5751" stroke-width="2"/><rect x="712" y="708" width="42" height="6" rx="2" fill="#8B1D3F"/><rect x="722" y="710" width="5" height="16" rx="2.5" fill="#18251E"/><rect x="730" y="710" width="5" height="16" rx="2.5" fill="#18251E"/><rect x="720" y="684" width="18" height="26" rx="8" fill="#066A32"/><circle cx="729" cy="678" r="6" fill="#E2C9A8"/><rect x="559.1" y="744.1" width="5.75" height="29.9" rx="2.875" fill="#18251E"/><rect x="567.15" y="744.1" width="5.75" height="29.9" rx="2.875" fill="#18251E"/><rect x="553.35" y="715.35" width="25.3" height="32.2" rx="10.35" fill="#8B1D3F"/><circle cx="566" cy="709.6" r="7.82" fill="#E2C9A8"/><path d="M584 736 h40 a16 16 0 0 1 -16 18 h-24 z" fill="#08803D"/><path d="M584 736 a20 20 0 0 1 20 -20 v20 z" fill="#066A32"/><line x1="624" y1="736" x2="636" y2="716" stroke="#18251E" stroke-width="3"/><circle cx="592" cy="760" r="6" fill="#18251E"/><circle cx="616" cy="760" r="6" fill="#18251E"/><rect x="828" y="688" width="16" height="66" rx="2" fill="#18251E"/><rect x="821" y="674" width="30" height="18" rx="2" fill="#4E5751"/><g transform="rotate(-62 836 684)"><rect x="836" y="679" width="22" height="10" fill="#8B1D3F"/><rect x="858" y="679" width="22" height="10" fill="#FFFFFF"/><rect x="880" y="679" width="22" height="10" fill="#8B1D3F"/><rect x="902" y="679" width="22" height="10" fill="#FFFFFF"/><rect x="924" y="679" width="22" height="10" fill="#8B1D3F"/><rect x="946" y="679" width="22" height="10" fill="#FFFFFF"/><rect x="836" y="679" width="132" height="10" fill="none" stroke="#18251E" stroke-width="1.5"/></g><rect x="880" y="728" width="68" height="22" rx="11" fill="#9DB39C"/><rect x="976" y="728" width="64" height="22" rx="11" fill="#9DB39C"/><rect x="1068" y="728" width="52" height="22" rx="11" fill="#9DB39C"/><rect x="908" y="658" width="8" height="70" fill="#4E5751"/><circle cx="912" cy="630.5" r="50" fill="#9DB39C"/><circle cx="895.5" cy="622" r="27.5" fill="#CFE5D6"/><rect x="1004" y="648" width="8" height="80" fill="#4E5751"/><circle cx="1008" cy="616.1" r="58" fill="#9DB39C"/><circle cx="988.86" cy="606.24" r="31.9" fill="#CFE5D6"/><rect x="1090" y="664" width="8" height="64" fill="#4E5751"/><circle cx="1094" cy="639.8" r="44" fill="#9DB39C"/><circle cx="1079.48" cy="632.32" r="24.2" fill="#CFE5D6"/><rect x="1050" y="570" width="5" height="158" fill="#18251E"/><rect x="1050" y="570" width="24" height="5" fill="#18251E"/><rect x="1066" y="574" width="18" height="9" rx="3" fill="#4E5751"/><rect x="953.1" y="748.1" width="5.75" height="29.9" rx="2.875" fill="#18251E"/><rect x="961.15" y="748.1" width="5.75" height="29.9" rx="2.875" fill="#18251E"/><rect x="947.35" y="719.35" width="25.3" height="32.2" rx="10.35" fill="#066A32"/><circle cx="960" cy="713.6" r="7.82" fill="#E2C9A8"/><rect x="1132" y="374" width="306" height="22" fill="#F4F1EA"/><rect x="1140" y="396" width="290" height="324" fill="#DDD7C9"/><line x1="1140" y1="696" x2="1430" y2="696" stroke="#F4F1EA" stroke-width="3"/><rect x="1164" y="514" width="38" height="66" rx="2" fill="#AFC3C8"/><rect x="1160" y="580" width="46" height="5" fill="#F4F1EA"/><rect x="1218" y="514" width="38" height="66" rx="2" fill="#AFC3C8"/><rect x="1214" y="580" width="46" height="5" fill="#F4F1EA"/><rect x="1272" y="514" width="38" height="66" rx="2" fill="#AFC3C8"/><rect x="1268" y="580" width="46" height="5" fill="#F4F1EA"/><rect x="1326" y="514" width="38" height="66" rx="2" fill="#AFC3C8"/><rect x="1322" y="580" width="46" height="5" fill="#F4F1EA"/><rect x="1380" y="514" width="38" height="66" rx="2" fill="#AFC3C8"/><rect x="1376" y="580" width="46" height="5" fill="#F4F1EA"/><rect x="1164" y="414" width="38" height="66" rx="2" fill="#AFC3C8"/><rect x="1160" y="480" width="46" height="5" fill="#F4F1EA"/><rect x="1218" y="414" width="38" height="66" rx="2" fill="#AFC3C8"/><rect x="1214" y="480" width="46" height="5" fill="#F4F1EA"/><rect x="1272" y="414" width="38" height="66" rx="2" fill="#AFC3C8"/><rect x="1268" y="480" width="46" height="5" fill="#F4F1EA"/><rect x="1326" y="414" width="38" height="66" rx="2" fill="#AFC3C8"/><rect x="1322" y="480" width="46" height="5" fill="#F4F1EA"/><rect x="1380" y="414" width="38" height="66" rx="2" fill="#AFC3C8"/><rect x="1376" y="480" width="46" height="5" fill="#F4F1EA"/><rect x="1164" y="614" width="38" height="66" rx="2" fill="#AFC3C8"/><rect x="1160" y="680" width="46" height="5" fill="#F4F1EA"/><rect x="1380" y="614" width="38" height="66" rx="2" fill="#AFC3C8"/><rect x="1376" y="680" width="46" height="5" fill="#F4F1EA"/><rect x="1199" y="588" width="172" height="14" fill="#F4F1EA"/><rect x="1209" y="602" width="14" height="102" fill="#F4F1EA"/><rect x="1255" y="602" width="14" height="102" fill="#F4F1EA"/><rect x="1301" y="602" width="14" height="102" fill="#F4F1EA"/><rect x="1347" y="602" width="14" height="102" fill="#F4F1EA"/><rect x="1263" y="626" width="44" height="70" fill="#18251E"/><rect x="1189" y="712" width="192" height="8" fill="#F4F1EA"/><rect x="1203" y="534" width="164" height="48" rx="3" fill="#18251E"/><text x="1285" y="569" font-family="Gilroy, sans-serif" font-weight="800" font-size="30" fill="#FFFFFF" text-anchor="middle">Управа</text><rect x="1444" y="460" width="372" height="16" fill="#DDD7C9"/><rect x="1450" y="476" width="360" height="244" fill="#F4F1EA"/><rect x="1450" y="696" width="360" height="24" fill="#DDD7C9"/><rect x="1476" y="494" width="54" height="56" rx="2" fill="#AFC3C8"/><rect x="1472" y="550" width="62" height="5" fill="#DDD7C9"/><rect x="1544" y="494" width="54" height="56" rx="2" fill="#AFC3C8"/><rect x="1540" y="550" width="62" height="5" fill="#DDD7C9"/><rect x="1612" y="494" width="54" height="56" rx="2" fill="#AFC3C8"/><rect x="1608" y="550" width="62" height="5" fill="#DDD7C9"/><rect x="1680" y="494" width="54" height="56" rx="2" fill="#AFC3C8"/><rect x="1676" y="550" width="62" height="5" fill="#DDD7C9"/><rect x="1748" y="494" width="54" height="56" rx="2" fill="#AFC3C8"/><rect x="1744" y="550" width="62" height="5" fill="#DDD7C9"/><rect x="1612" y="610" width="54" height="56" rx="2" fill="#AFC3C8"/><rect x="1608" y="666" width="62" height="5" fill="#DDD7C9"/><rect x="1486" y="624" width="72" height="10" fill="#4E5751"/><rect x="1498" y="634" width="48" height="86" fill="#18251E"/><rect x="1462" y="566" width="200" height="42" rx="3" fill="#FFFFFF"/><rect x="1462" y="566" width="200" height="42" rx="3" fill="none" stroke="#18251E" stroke-width="2"/><text x="1562" y="595" font-family="Gilroy, sans-serif" font-weight="800" font-size="24" fill="#18251E" text-anchor="middle">Поликлиника</text><rect x="1708" y="624" width="72" height="10" fill="#4E5751"/><rect x="1720" y="634" width="48" height="86" fill="#18251E"/><rect x="1694" y="566" width="100" height="42" rx="3" fill="#08803D"/><text x="1744" y="595" font-family="Gilroy, sans-serif" font-weight="800" font-size="26" fill="#FFFFFF" text-anchor="middle">МФЦ</text><rect x="1639.1" y="746.1" width="5.75" height="29.9" rx="2.875" fill="#18251E"/><rect x="1647.15" y="746.1" width="5.75" height="29.9" rx="2.875" fill="#18251E"/><rect x="1633.35" y="717.35" width="25.3" height="32.2" rx="10.35" fill="#4E5751"/><circle cx="1646" cy="711.6" r="7.82" fill="#E2C9A8"/><line x1="1660" y1="776" x2="1668" y2="742" stroke="#18251E" stroke-width="3" stroke-linecap="round"/><rect x="1840" y="610" width="92" height="122" fill="#E3F1E7"/><rect x="1832" y="596" width="108" height="16" rx="2" fill="#08803D"/><rect x="1852" y="626" width="68" height="44" rx="2" fill="#AFC3C8"/><rect x="1836" y="670" width="100" height="8" fill="#066A32"/><rect x="1960" y="592" width="8" height="140" fill="#4E5751"/><rect x="2126" y="592" width="8" height="140" fill="#4E5751"/><rect x="1955" y="580" width="20" height="26" fill="#8B1D3F"/><rect x="1975" y="580" width="20" height="26" fill="#FFFFFF"/><rect x="1995" y="580" width="20" height="26" fill="#8B1D3F"/><rect x="2015" y="580" width="20" height="26" fill="#FFFFFF"/><rect x="2035" y="580" width="20" height="26" fill="#8B1D3F"/><rect x="2055" y="580" width="20" height="26" fill="#FFFFFF"/><rect x="2075" y="580" width="20" height="26" fill="#8B1D3F"/><rect x="2095" y="580" width="20" height="26" fill="#FFFFFF"/><rect x="2115" y="580" width="20" height="26" fill="#8B1D3F"/><rect x="1955" y="580" width="180" height="26" fill="none" stroke="#8B1D3F" stroke-width="2"/><path d="M1955 606 a10 10 0 0 0 20 0 z M1975 606 a10 10 0 0 0 20 0 z M1995 606 a10 10 0 0 0 20 0 z M2015 606 a10 10 0 0 0 20 0 z M2035 606 a10 10 0 0 0 20 0 z M2055 606 a10 10 0 0 0 20 0 z M2075 606 a10 10 0 0 0 20 0 z M2095 606 a10 10 0 0 0 20 0 z M2115 606 a10 10 0 0 0 20 0 z" fill="#8B1D3F"/><rect x="1986" y="714" width="40" height="6" rx="2" fill="#4E5751"/><rect x="2004" y="720" width="4" height="26" fill="#4E5751"/><rect x="2064" y="714" width="40" height="6" rx="2" fill="#4E5751"/><rect x="2082" y="720" width="4" height="26" fill="#4E5751"/><rect x="1972.8" y="711.5" width="25.3" height="5.75" rx="2.875" fill="#18251E"/><rect x="1993.5" y="711.5" width="5.75" height="34.5" rx="2.875" fill="#18251E"/><rect x="1967.05" y="679.3" width="23" height="34.5" rx="10.35" fill="#066A32"/><circle cx="1978.55" cy="672.4" r="7.82" fill="#E2C9A8"/><rect x="2050.8" y="711.5" width="25.3" height="5.75" rx="2.875" fill="#18251E"/><rect x="2071.5" y="711.5" width="5.75" height="34.5" rx="2.875" fill="#18251E"/><rect x="2045.05" y="679.3" width="23" height="34.5" rx="10.35" fill="#08803D"/><circle cx="2056.55" cy="672.4" r="7.82" fill="#E2C9A8"/><path d="M2160 620 l34 -36 l34 36 z" fill="#FFFFFF"/><path d="M2160 620 l34 -36 l34 36 z" fill="none" stroke="#08803D" stroke-width="2"/><rect x="2160" y="620" width="68" height="14" fill="#08803D"/><rect x="2162" y="634" width="4" height="98" fill="#4E5751"/><rect x="2222" y="634" width="4" height="98" fill="#4E5751"/><rect x="2166" y="690" width="56" height="38" fill="#DDD7C9"/><circle cx="2178" cy="684" r="6" fill="#08803D"/><circle cx="2194" cy="684" r="6" fill="#8B1D3F"/><circle cx="2210" cy="684" r="6" fill="#9DB39C"/><path d="M2234 620 l34 -36 l34 36 z" fill="#FFFFFF"/><path d="M2234 620 l34 -36 l34 36 z" fill="none" stroke="#8B1D3F" stroke-width="2"/><rect x="2234" y="620" width="68" height="14" fill="#8B1D3F"/><rect x="2236" y="634" width="4" height="98" fill="#4E5751"/><rect x="2296" y="634" width="4" height="98" fill="#4E5751"/><rect x="2240" y="690" width="56" height="38" fill="#DDD7C9"/><circle cx="2252" cy="684" r="6" fill="#8B1D3F"/><circle cx="2268" cy="684" r="6" fill="#9DB39C"/><circle cx="2284" cy="684" r="6" fill="#08803D"/><path d="M2308 620 l34 -36 l34 36 z" fill="#E3F1E7"/><path d="M2308 620 l34 -36 l34 36 z" fill="none" stroke="#066A32" stroke-width="2"/><rect x="2308" y="620" width="68" height="14" fill="#066A32"/><rect x="2310" y="634" width="4" height="98" fill="#4E5751"/><rect x="2370" y="634" width="4" height="98" fill="#4E5751"/><rect x="2314" y="690" width="56" height="38" fill="#DDD7C9"/><circle cx="2326" cy="684" r="6" fill="#9DB39C"/><circle cx="2342" cy="684" r="6" fill="#08803D"/><circle cx="2358" cy="684" r="6" fill="#8B1D3F"/><rect x="2243.1" y="750.1" width="5.75" height="29.9" rx="2.875" fill="#18251E"/><rect x="2251.15" y="750.1" width="5.75" height="29.9" rx="2.875" fill="#18251E"/><rect x="2237.35" y="721.35" width="25.3" height="32.2" rx="10.35" fill="#066A32"/><circle cx="2250" cy="715.6" r="7.82" fill="#E2C9A8"/><rect x="1943.1" y="752.1" width="5.75" height="29.9" rx="2.875" fill="#18251E"/><rect x="1951.15" y="752.1" width="5.75" height="29.9" rx="2.875" fill="#18251E"/><rect x="1937.35" y="723.35" width="25.3" height="32.2" rx="10.35" fill="#8B1D3F"/><circle cx="1950" cy="717.6" r="7.82" fill="#E2C9A8"/><rect x="2404" y="250" width="222" height="14" fill="#DDD7C9"/><rect x="2410" y="264" width="210" height="456" fill="#DDD7C9"/><rect x="2410" y="696" width="210" height="24" fill="#DDD7C9"/><line x1="2410" y1="696" x2="2620" y2="696" stroke="#F4F1EA" stroke-width="3"/><rect x="2434" y="566" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2430" y="610" width="48" height="5" fill="#F4F1EA"/><rect x="2496" y="566" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2492" y="610" width="48" height="5" fill="#F4F1EA"/><rect x="2558" y="566" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2554" y="610" width="48" height="5" fill="#F4F1EA"/><rect x="2434" y="494" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2430" y="538" width="48" height="5" fill="#F4F1EA"/><rect x="2496" y="494" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2492" y="538" width="48" height="5" fill="#F4F1EA"/><rect x="2558" y="494" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2554" y="538" width="48" height="5" fill="#F4F1EA"/><rect x="2434" y="422" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2430" y="466" width="48" height="5" fill="#F4F1EA"/><rect x="2496" y="422" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2492" y="466" width="48" height="5" fill="#F4F1EA"/><rect x="2558" y="422" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2554" y="466" width="48" height="5" fill="#F4F1EA"/><rect x="2434" y="350" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2430" y="394" width="48" height="5" fill="#F4F1EA"/><rect x="2496" y="350" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2492" y="394" width="48" height="5" fill="#F4F1EA"/><rect x="2558" y="350" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2554" y="394" width="48" height="5" fill="#F4F1EA"/><rect x="2434" y="278" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2430" y="322" width="48" height="5" fill="#F4F1EA"/><rect x="2496" y="278" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2492" y="322" width="48" height="5" fill="#F4F1EA"/><rect x="2558" y="278" width="40" height="44" rx="2" fill="#AFC3C8"/><rect x="2554" y="322" width="48" height="5" fill="#F4F1EA"/><rect x="2428" y="638" width="92" height="58" rx="2" fill="#AFC3C8"/><rect x="2450" y="584" width="44" height="44" rx="4" fill="#08803D"/><path d="M2466 592 h12 v10 h10 v12 h-10 v10 h-12 v-10 h-10 v-12 h10 z" fill="#FFFFFF"/><rect x="2546" y="630" width="60" height="10" fill="#08803D"/><rect x="2554" y="640" width="44" height="62" fill="#18251E"/><rect x="2542" y="690" width="68" height="10" fill="#F4F1EA"/><rect x="2534" y="700" width="84" height="10" fill="#F4F1EA"/><rect x="2526" y="710" width="100" height="10" fill="#F4F1EA"/><rect x="2690" y="510" width="12" height="210" fill="#4E5751"/><rect x="2770" y="510" width="12" height="210" fill="#4E5751"/><rect x="2682" y="506" width="110" height="12" fill="#DDD7C9"/><rect x="2682" y="600" width="110" height="12" fill="#DDD7C9"/><line x1="2820" y1="720" x2="2820" y2="390" stroke="#4E5751" stroke-width="6"/><line x1="2842" y1="720" x2="2842" y2="390" stroke="#4E5751" stroke-width="6"/><line x1="2820" y1="720" x2="2842" y2="690" stroke="#4E5751" stroke-width="2"/><line x1="2820" y1="690" x2="2842" y2="660" stroke="#4E5751" stroke-width="2"/><line x1="2820" y1="660" x2="2842" y2="630" stroke="#4E5751" stroke-width="2"/><line x1="2820" y1="630" x2="2842" y2="600" stroke="#4E5751" stroke-width="2"/><line x1="2820" y1="600" x2="2842" y2="570" stroke="#4E5751" stroke-width="2"/><line x1="2820" y1="570" x2="2842" y2="540" stroke="#4E5751" stroke-width="2"/><line x1="2820" y1="540" x2="2842" y2="510" stroke="#4E5751" stroke-width="2"/><line x1="2820" y1="510" x2="2842" y2="480" stroke="#4E5751" stroke-width="2"/><line x1="2820" y1="480" x2="2842" y2="450" stroke="#4E5751" stroke-width="2"/><line x1="2820" y1="450" x2="2842" y2="420" stroke="#4E5751" stroke-width="2"/><line x1="2820" y1="420" x2="2842" y2="390" stroke="#4E5751" stroke-width="2"/><line x1="2680" y1="390" x2="2880" y2="390" stroke="#4E5751" stroke-width="8"/><line x1="2680" y1="390" x2="2831" y2="340" stroke="#4E5751" stroke-width="3"/><line x1="2880" y1="390" x2="2831" y2="340" stroke="#4E5751" stroke-width="3"/><line x1="2831" y1="390" x2="2831" y2="340" stroke="#4E5751" stroke-width="6"/><rect x="2854" y="394" width="26" height="26" fill="#4E5751"/><line x1="2720" y1="394" x2="2720" y2="490" stroke="#18251E" stroke-width="2"/><rect x="2712" y="488" width="16" height="10" fill="#18251E"/><rect x="2650" y="624" width="226" height="104" fill="#F4F1EA"/><rect x="2650" y="620" width="6" height="108" fill="#4E5751"/><rect x="2687" y="620" width="6" height="108" fill="#4E5751"/><rect x="2724" y="620" width="6" height="108" fill="#4E5751"/><rect x="2761" y="620" width="6" height="108" fill="#4E5751"/><rect x="2798" y="620" width="6" height="108" fill="#4E5751"/><rect x="2835" y="620" width="6" height="108" fill="#4E5751"/><rect x="2872" y="620" width="6" height="108" fill="#4E5751"/><line x1="2650" y1="624" x2="2876" y2="624" stroke="#4E5751" stroke-width="3"/><rect x="2664" y="644" width="198" height="46" rx="3" fill="#FFFFFF"/><rect x="2664" y="644" width="198" height="46" rx="3" fill="none" stroke="#18251E" stroke-width="2"/><text x="2763" y="675" font-family="Gilroy, sans-serif" font-weight="800" font-size="23" fill="#18251E" text-anchor="middle">Строительство</text><rect x="2894" y="490" width="202" height="14" fill="#DDD7C9"/><rect x="2900" y="504" width="190" height="216" fill="#F4F1EA"/><rect x="2900" y="696" width="190" height="24" fill="#DDD7C9"/><rect x="2922" y="520" width="36" height="50" rx="2" fill="#AFC3C8"/><rect x="2918" y="570" width="44" height="5" fill="#DDD7C9"/><rect x="2982" y="520" width="36" height="50" rx="2" fill="#AFC3C8"/><rect x="2978" y="570" width="44" height="5" fill="#DDD7C9"/><rect x="3042" y="520" width="36" height="50" rx="2" fill="#AFC3C8"/><rect x="3038" y="570" width="44" height="5" fill="#DDD7C9"/><rect x="2970" y="630" width="50" height="90" fill="#18251E"/><rect x="2958" y="620" width="74" height="10" fill="#4E5751"/><rect x="2912" y="588" width="166" height="76" rx="3" fill="#08803D"/><text x="2995" y="618" font-family="Gilroy, sans-serif" font-weight="800" font-size="26" fill="#FFFFFF" text-anchor="middle">Совет</text><text x="2995" y="650" font-family="Gilroy, sans-serif" font-weight="800" font-size="26" fill="#FFFFFF" text-anchor="middle">депутатов</text><rect x="1436" y="662" width="8" height="60" fill="#4E5751"/><circle cx="1440" cy="641.1" r="38" fill="#9DB39C"/><circle cx="1427.46" cy="634.64" r="20.9" fill="#CFE5D6"/></svg>
+            <button class="pin" type="button" data-place="1" aria-controls="sheet" aria-label="1. Двор" style="left:20.9%;top:52.439%"><i>1</i></button>
+            <button class="pin" type="button" data-place="2" aria-controls="sheet" aria-label="2. Дом на капремонте" style="left:6.109%;top:35.61%"><i>2</i></button>
+            <button class="pin" type="button" data-place="3" aria-controls="sheet" aria-label="3. Управляющая компания" style="left:10.322%;top:63.902%"><i>3</i></button>
+            <button class="pin" type="button" data-place="4" aria-controls="sheet" aria-label="4. Сквер" style="left:32.154%;top:58.537%"><i>4</i></button>
+            <button class="pin" type="button" data-place="5" aria-controls="sheet" aria-label="5. Управа района" style="left:41.318%;top:35.122%"><i>5</i></button>
+            <button class="pin" type="button" data-place="6" aria-controls="sheet" aria-label="6. Поликлиника и МФЦ" style="left:52.412%;top:45.61%"><i>6</i></button>
+            <button class="pin" type="button" data-place="7" aria-controls="sheet" aria-label="7. Киоск, кафе и ярмарка" style="left:66.238%;top:57.317%"><i>7</i></button>
+            <button class="pin" type="button" data-place="8" aria-controls="sheet" aria-label="8. Аптека на первом этаже" style="left:80.868%;top:56.098%"><i>8</i></button>
+            <button class="pin" type="button" data-place="9" aria-controls="sheet" aria-label="9. Стройка" style="left:87.46%;top:48.78%"><i>9</i></button>
+            <button class="pin" type="button" data-place="10" aria-controls="sheet" aria-label="10. Совет депутатов" style="left:96.302%;top:49.268%"><i>10</i></button>
+          </div>
+        </div>
+
+        <ul class="chips" id="chips">
+            <li><button class="chip" type="button" data-place="1" aria-controls="sheet" aria-label="1. Двор"><span class="cn" aria-hidden="true">1</span>Двор</button></li>
+            <li><button class="chip" type="button" data-place="2" aria-controls="sheet" aria-label="2. Дом на капремонте"><span class="cn" aria-hidden="true">2</span>Дом на капремонте</button></li>
+            <li><button class="chip" type="button" data-place="3" aria-controls="sheet" aria-label="3. Управляющая компания"><span class="cn" aria-hidden="true">3</span>Управляющая компания</button></li>
+            <li><button class="chip" type="button" data-place="4" aria-controls="sheet" aria-label="4. Сквер"><span class="cn" aria-hidden="true">4</span>Сквер</button></li>
+            <li><button class="chip" type="button" data-place="5" aria-controls="sheet" aria-label="5. Управа района"><span class="cn" aria-hidden="true">5</span>Управа района</button></li>
+            <li><button class="chip" type="button" data-place="6" aria-controls="sheet" aria-label="6. Поликлиника и МФЦ"><span class="cn" aria-hidden="true">6</span>Поликлиника и МФЦ</button></li>
+            <li><button class="chip" type="button" data-place="7" aria-controls="sheet" aria-label="7. Киоск, кафе и ярмарка"><span class="cn" aria-hidden="true">7</span>Киоск, кафе и ярмарка</button></li>
+            <li><button class="chip" type="button" data-place="8" aria-controls="sheet" aria-label="8. Аптека на первом этаже"><span class="cn" aria-hidden="true">8</span>Аптека на первом этаже</button></li>
+            <li><button class="chip" type="button" data-place="9" aria-controls="sheet" aria-label="9. Стройка"><span class="cn" aria-hidden="true">9</span>Стройка</button></li>
+            <li><button class="chip" type="button" data-place="10" aria-controls="sheet" aria-label="10. Совет депутатов"><span class="cn" aria-hidden="true">10</span>Совет депутатов</button></li>
+        </ul>
+
+          <div class="sheet" id="sheet" role="dialog" aria-modal="false" aria-labelledby="h-place-1" hidden>
+            <div class="sheet-head" id="sheetHead">
+              <span class="handle" aria-hidden="true"></span>
+              <button class="close" id="close" type="button" aria-label="Закрыть карточку места">
+                <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" focusable="false"><path d="M4 4 L18 18 M18 4 L4 18" stroke="#18251E" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              </button>
+            </div>
+            <div class="sheet-body" id="sheetBody">
+
+              <article class="place" id="place-1" data-place="1" hidden>
+                <div class="place-h"><span class="no" aria-hidden="true">1</span><h3 class="h3" id="h-place-1" tabindex="-1">Двор</h3></div>
+                <p class="lbl">Что делает совет</p>
+                <ul class="does">
+                  <li>Согласует ежегодный список дворов для благоустройства. Список вносит глава управы.</li>
+                  <li>Депутаты участвуют в комиссиях, которые открывают и принимают работы во дворе, и следят за их ходом.</li>
+                  <li>Согласует установку шлагбаумов и других ограждений на придомовой территории.</li>
+                </ul>
+                <p class="limit"><b>Где граница:</b> работы заказывает и ведёт управа.</p>
+                <p class="basis">Основание: <a href="https://www.mos.ru/authority/documents/doc/5769220/" target="_blank" rel="noopener">Закон г. Москвы № 39, ст. 1, ч. 2</a>.</p>
+                <button class="btn btn-primary next" type="button" data-next="2" aria-label="Следующее место">Следующее место →</button>
+              </article>
+
+              <article class="place" id="place-2" data-place="2" hidden>
+                <div class="place-h"><span class="no" aria-hidden="true">2</span><h3 class="h3" id="h-place-2" tabindex="-1">Дом на капремонте</h3></div>
+                <p class="lbl">Что делает совет</p>
+                <ul class="does">
+                  <li>По каждому дому из краткосрочного плана капремонта совет направляет депутатов в комиссию Фонда капремонта.</li>
+                  <li>Уполномоченный депутат участвует в приёмке работ и подписывает акт.</li>
+                  <li>Если работы сделаны плохо, депутат не подписывает акт и пишет особое мнение. Его проверяет Мосжилинспекция. Если замечания обоснованы, недостатки устраняют.</li>
+                </ul>
+                <p class="limit"><b>Где граница:</b> если замечания признают необоснованными, акт с особым мнением могут считать согласованным.</p>
+                <p class="basis">Основание: <a href="https://www.garant.ru/hotlaw/moscow/698675/" target="_blank" rel="noopener">постановление Правительства Москвы № 57-ПП от 25.02.2016</a>.</p>
+                <button class="btn btn-primary next" type="button" data-next="3" aria-label="Следующее место">Следующее место →</button>
+              </article>
+
+              <article class="place" id="place-3" data-place="3" hidden>
+                <div class="place-h"><span class="no" aria-hidden="true">3</span><h3 class="h3" id="h-place-3" tabindex="-1">Управляющая компания</h3></div>
+                <p class="lbl">Что делает совет</p>
+                <ul class="does">
+                  <li>Заслушивает руководителей управляющих организаций о содержании домов с учётом обращений жителей.</li>
+                  <li>Организует проверки управляющих организаций. Если нужно, созывает собрание собственников, чтобы расторгнуть договор, выбрать другую компанию или сменить способ управления домом.</li>
+                </ul>
+                <p class="limit"><b>Где граница:</b> решение о смене управляющей компании принимают собственники на общем собрании.</p>
+                <p class="basis">Основание: <a href="https://www.mos.ru/authority/documents/doc/5769220/" target="_blank" rel="noopener">Закон г. Москвы № 39, ст. 1, ч. 3</a>.</p>
+                <button class="btn btn-primary next" type="button" data-next="4" aria-label="Следующее место">Следующее место →</button>
+              </article>
+
+              <article class="place" id="place-4" data-place="4" hidden>
+                <div class="place-h"><span class="no" aria-hidden="true">4</span><h3 class="h3" id="h-place-4" tabindex="-1">Сквер</h3></div>
+                <p class="lbl">Что делает совет</p>
+                <ul class="does">
+                  <li>Согласует планы благоустройства парков и скверов, которыми занимаются город или префектура.</li>
+                </ul>
+                <p class="limit"><b>Где граница:</b> проект и работы — за городом.</p>
+                <p class="basis">Основание: <a href="https://www.mos.ru/authority/documents/doc/5769220/" target="_blank" rel="noopener">Закон г. Москвы № 39, ст. 1, ч. 2</a>.</p>
+                <button class="btn btn-primary next" type="button" data-next="5" aria-label="Следующее место">Следующее место →</button>
+              </article>
+
+              <article class="place" id="place-5" data-place="5" hidden>
+                <div class="place-h"><span class="no" aria-hidden="true">5</span><h3 class="h3" id="h-place-5" tabindex="-1">Управа района</h3></div>
+                <p class="lbl">Что делает совет</p>
+                <ul class="does">
+                  <li>Каждый год заслушивает отчёт главы управы.</li>
+                  <li>Может выразить главе управы недоверие. Для этого нужно, чтобы инициативу поддержали не меньше половины совета и не меньше двух третей проголосовали «за» открыто. Не раньше чем через год после назначения главы.</li>
+                </ul>
+                <p class="limit"><b>Где граница:</b> главу управы назначает и освобождает от должности мэр Москвы.</p>
+                <p class="basis">Основание: <a href="https://www.mos.ru/authority/documents/doc/5769220/" target="_blank" rel="noopener">Закон г. Москвы № 39, ст. 1, ч. 1; ст. 3</a>.</p>
+                <button class="btn btn-primary next" type="button" data-next="6" aria-label="Следующее место">Следующее место →</button>
+              </article>
+
+              <article class="place" id="place-6" data-place="6" hidden>
+                <div class="place-h"><span class="no" aria-hidden="true">6</span><h3 class="h3" id="h-place-6" tabindex="-1">Поликлиника и МФЦ</h3></div>
+                <p class="lbl">Что делает совет</p>
+                <ul class="does">
+                  <li>Каждый год заслушивает информацию руководителей поликлиники, МФЦ, территориального центра социального обслуживания и инженерной службы района.</li>
+                </ul>
+                <p class="limit"><b>Где граница:</b> совет слушает и задаёт вопросы, но не управляет этими учреждениями.</p>
+                <p class="basis">Основание: <a href="https://www.mos.ru/authority/documents/doc/5769220/" target="_blank" rel="noopener">Закон г. Москвы № 39, ст. 1, ч. 1</a>.</p>
+                <button class="btn btn-primary next" type="button" data-next="7" aria-label="Следующее место">Следующее место →</button>
+              </article>
+
+              <article class="place" id="place-7" data-place="7" hidden>
+                <div class="place-h"><span class="no" aria-hidden="true">7</span><h3 class="h3" id="h-place-7" tabindex="-1">Киоск, кафе и ярмарка</h3></div>
+                <p class="lbl">Что делает совет</p>
+                <ul class="does">
+                  <li>Согласует схему размещения киосков и павильонов и изменения в ней.</li>
+                  <li>Согласует схему размещения летних кафе.</li>
+                  <li>Согласует места для ярмарок выходного дня.</li>
+                </ul>
+                <p class="limit"><b>Где граница:</b> если совет не принял решение в срок, проект считается согласованным.</p>
+                <p class="basis">Основание: <a href="https://www.mos.ru/authority/documents/doc/5769220/" target="_blank" rel="noopener">Закон г. Москвы № 39, ст. 1, ч. 5 и 9; ст. 3, ч. 13</a>.</p>
+                <button class="btn btn-primary next" type="button" data-next="8" aria-label="Следующее место">Следующее место →</button>
+              </article>
+
+              <article class="place" id="place-8" data-place="8" hidden>
+                <div class="place-h"><span class="no" aria-hidden="true">8</span><h3 class="h3" id="h-place-8" tabindex="-1">Аптека на первом этаже</h3></div>
+                <p class="lbl">Что делает совет</p>
+                <ul class="does">
+                  <li>Согласует перевод жилого помещения в многоквартирном доме в нежилое.</li>
+                </ul>
+                <p class="limit"><b>Где граница:</b> решение о переводе принимает город, совет его согласует.</p>
+                <p class="basis">Основание: <a href="https://www.mos.ru/authority/documents/doc/5769220/" target="_blank" rel="noopener">Закон г. Москвы № 39, ст. 1, ч. 8</a>.</p>
+                <button class="btn btn-primary next" type="button" data-next="9" aria-label="Следующее место">Следующее место →</button>
+              </article>
+
+              <article class="place" id="place-9" data-place="9" hidden>
+                <div class="place-h"><span class="no" aria-hidden="true">9</span><h3 class="h3" id="h-place-9" tabindex="-1">Стройка</h3></div>
+                <p class="lbl">Что делает совет</p>
+                <ul class="does">
+                  <li>Согласует проекты градостроительных планов для небольших объектов до 1500 м², которые строят на частные деньги: аптек, детских и спортивных объектов, магазинов.</li>
+                  <li>Решение принимают за 30 дней.</li>
+                </ul>
+                <p class="limit"><b>Где граница:</b> согласие считается полученным, если против не проголосовали две трети совета.</p>
+                <p class="basis">Основание: <a href="https://www.mos.ru/authority/documents/doc/5769220/" target="_blank" rel="noopener">Закон г. Москвы № 39, ст. 1, ч. 4; ст. 3, ч. 12–13</a>.</p>
+                <button class="btn btn-primary next" type="button" data-next="10" aria-label="Следующее место">Следующее место →</button>
+              </article>
+
+              <article class="place" id="place-10" data-place="10" hidden>
+                <div class="place-h"><span class="no" aria-hidden="true">10</span><h3 class="h3" id="h-place-10" tabindex="-1">Совет депутатов</h3></div>
+                <p class="lbl">Что делает совет</p>
+                <ul class="does">
+                  <li>Утверждает бюджет муниципального округа и отчёт о его исполнении.</li>
+                  <li>Проводит местные праздники и рассказывает жителям о работе местного самоуправления.</li>
+                  <li>Составляет план дополнительных мероприятий по развитию района и согласует его с главой управы.</li>
+                  <li>Может вносить законопроекты в Московскую городскую думу.</li>
+                  <li>Если так записано в уставе округа, избирает главу муниципального округа из своего состава.</li>
+                </ul>
+                <p class="limit"><b>Где граница:</b> решения по большинству городских работ принимает управа.</p>
+                <p class="basis">Основание: <a href="https://www.mos.ru/authority/documents/doc/8228220/" target="_blank" rel="noopener">Закон г. Москвы № 56, ст. 8 и 11</a>; <a href="https://www.mos.ru/authority/documents/doc/5769220/" target="_blank" rel="noopener">Закон г. Москвы № 39, ст. 3</a>; Устав г. Москвы, ст. 36.</p>
+                <button class="btn btn-primary next" type="button" data-next="quiz" aria-label="К вопросам">К вопросам →</button>
+              </article>
+
+            </div>
+          </div>
+
+        <div class="card acc concl">Совет согласует и контролирует, а решения по большинству городских работ принимает управа. Если совет не принял решение в срок, проект считается согласованным.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4.3 Кто такой депутат -->
+  <section class="sec" id="deputy" aria-labelledby="h-deputy">
+    <div class="wrap">
+      <p class="kick rv">ДЕПУТАТ</p>
+      <h2 id="h-deputy" class="rv" style="--d:60ms">Работа рядом с домом</h2>
+      <div class="grid3">
+        <div class="card dep rv" style="--d:100ms">
+          <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><g fill="none" stroke="#18251E" stroke-width="2" stroke-linejoin="round"><rect x="4" y="11" width="28" height="19" rx="3"/><path d="M13 11V7.5A1.5 1.5 0 0 1 14.5 6h7A1.5 1.5 0 0 1 23 7.5V11"/><path d="M4 19h28"/></g></svg>
+          <p>Как правило, работает на непостоянной основе, то есть совмещает с основной работой.</p>
+          <p class="basis">Основание: <a href="https://www.mos.ru/authority/documents/doc/8228220/" target="_blank" rel="noopener">Закон г. Москвы № 56, ст. 13</a>.</p>
+        </div>
+        <div class="card dep rv" style="--d:150ms">
+          <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><g fill="none" stroke="#18251E" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><circle cx="25" cy="13" r="3.5"/><path d="M4 29c0-5 3.6-8.5 8-8.5s8 3.5 8 8.5"/><path d="M22 21.2c.9-.4 1.9-.7 3-.7 3.6 0 6.5 2.9 6.5 7"/></g></svg>
+          <p>Не реже раза в год встречается с избирателями и отчитывается. Отчёт публикуют на сайте округа в течение 14 дней.</p>
+          <p class="basis">Основание: <a href="https://moskva-pravo.ru/zakon/2025/04/16/n-19/" target="_blank" rel="noopener">Закон г. Москвы № 19 от 16.04.2025</a>.</p>
+        </div>
+        <div class="card dep rv" style="--d:200ms">
+          <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><g fill="none" stroke="#18251E" stroke-width="2" stroke-linejoin="round"><rect x="4" y="8" width="28" height="20" rx="3"/><path d="M5 10l13 9 13-9"/></g></svg>
+          <p>Совет может обращаться в органы власти Москвы. Ответ обязаны дать письменно в течение месяца.</p>
+          <p class="basis">Основание: <a href="https://www.mos.ru/authority/documents/doc/8228220/" target="_blank" rel="noopener">Закон г. Москвы № 56, ст. 34</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4.4 Правда или миф -->
+  <section class="sec" id="quiz" aria-labelledby="h-quiz">
+    <div class="wrap">
+      <p class="kick rv">ПРОВЕРЬТЕ СЕБЯ</p>
+      <h2 id="h-quiz" class="rv" style="--d:60ms" tabindex="-1">Правда или миф</h2>
+      <div class="grid2">
+        <div class="card q rv" data-v="myth" style="--d:100ms">
+          <p class="h3 b" id="q1">Совет депутатов сам ремонтирует дворы.</p>
+          <div class="q-btns" role="group" aria-labelledby="q1">
+            <button class="btn btn-sec" type="button" data-a="truth" aria-label="Правда">Правда</button>
+            <button class="btn btn-sec" type="button" data-a="myth" aria-label="Миф">Миф</button>
+          </div>
+          <div class="q-res" aria-live="polite"><div hidden><p class="q-v ok">Миф</p><p class="q-ex">Работы заказывает и ведёт управа. Совет согласует список дворов и участвует в приёмке работ.</p></div></div>
+        </div>
+        <div class="card q rv" data-v="truth" style="--d:140ms">
+          <p class="h3 b" id="q2">Шлагбаум во дворе ставят только с согласия совета депутатов.</p>
+          <div class="q-btns" role="group" aria-labelledby="q2">
+            <button class="btn btn-sec" type="button" data-a="truth" aria-label="Правда">Правда</button>
+            <button class="btn btn-sec" type="button" data-a="myth" aria-label="Миф">Миф</button>
+          </div>
+          <div class="q-res" aria-live="polite"><div hidden><p class="q-v ok">Правда</p><p class="q-ex">Установку ограждений на придомовой территории согласует совет.</p></div></div>
+        </div>
+        <div class="card q rv" data-v="part" style="--d:180ms">
+          <p class="h3 b" id="q3">Совет может снять главу управы.</p>
+          <div class="q-btns" role="group" aria-labelledby="q3">
+            <button class="btn btn-sec" type="button" data-a="truth" aria-label="Правда">Правда</button>
+            <button class="btn btn-sec" type="button" data-a="myth" aria-label="Миф">Миф</button>
+          </div>
+          <div class="q-res" aria-live="polite"><div hidden><p class="q-v part">Не совсем</p><p class="q-ex">Совет может выразить недоверие двумя третями голосов. Назначает и освобождает главу управы мэр Москвы.</p></div></div>
+        </div>
+        <div class="card q rv" data-v="truth" style="--d:220ms">
+          <p class="h3 b" id="q4">Если совет не ответил вовремя, проект проходит без него.</p>
+          <div class="q-btns" role="group" aria-labelledby="q4">
+            <button class="btn btn-sec" type="button" data-a="truth" aria-label="Правда">Правда</button>
+            <button class="btn btn-sec" type="button" data-a="myth" aria-label="Миф">Миф</button>
+          </div>
+          <div class="q-res" aria-live="polite"><div hidden><p class="q-v ok">Правда</p><p class="q-ex">Если совет не принял решение в срок, проект считается согласованным.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4.5 Подпись, без которой нельзя стать кандидатом в мэры -->
+  <section class="sec" id="filter" aria-labelledby="h-filter">
+    <div class="wrap filter-grid">
+      <div>
+        <p class="kick rv">МУНИЦИПАЛЬНЫЙ ФИЛЬТР</p>
+        <h2 id="h-filter" class="rv" style="--d:60ms">Подпись, без которой нельзя стать кандидатом в мэры</h2>
+        <p class="body rv" style="--d:100ms">Чтобы стать кандидатом в мэры Москвы, нужно собрать подписи муниципальных депутатов. В 2023 году требовалось 110 подписей из 110 муниципальных образований. Следующие выборы мэра — в 2028 году.</p>
+      </div>
+      <div class="stats2">
+        <div class="card stat rv" style="--d:140ms"><span class="num">110</span><span class="cap">подписей в 2023 году</span></div>
+        <div class="card stat rv" style="--d:180ms"><span class="num">2028</span><span class="cap">следующие выборы мэра</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 4.6 Финал -->
+<section class="final" id="final" aria-labelledby="h-final">
+  <div class="wrap">
+    <p class="kick">ВЫБОРЫ В СОВЕТЫ ДЕПУТАТОВ</p>
+    <h2 id="h-final">Сентябрь 2027</h2>
+    <p class="body">Выдвинуться можно от партии или самовыдвижением. Московское Яблоко проводит встречи и обучение для будущих кандидатов.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="[ссылка на форму]" data-todo aria-label="Хочу стать кандидатом">Хочу стать кандидатом</a>
+      <a class="btn btn-sec-dark" href="[ссылка]" data-todo aria-label="Найти своего депутата">Найти своего депутата</a>
+    </div>
+  </div>
+</section>
+
+<!-- 4.7 Основания -->
+<div class="bases">
+  <div class="wrap">
+    <details>
+      <summary>Основания<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M5 8l5 5 5-5" fill="none" stroke="#18251E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <ol>
+        <li>Федеральный закон № 33-ФЗ от 20.03.2025 «Об общих принципах организации местного самоуправления в единой системе публичной власти», ст. 87<a href="https://rg.ru/documents/2025/03/26/mestnoe-samoupravlenie-dok.html" target="_blank" rel="noopener">https://rg.ru/documents/2025/03/26/mestnoe-samoupravlenie-dok.html</a></li>
+        <li>Закон г. Москвы № 39 от 11.07.2012 «О наделении органов местного самоуправления муниципальных округов в городе Москве отдельными полномочиями города Москвы»<a href="https://www.mos.ru/authority/documents/doc/5769220/" target="_blank" rel="noopener">https://www.mos.ru/authority/documents/doc/5769220/</a></li>
+        <li>Постановление Правительства Москвы № 57-ПП от 25.02.2016<a href="https://www.garant.ru/hotlaw/moscow/698675/" target="_blank" rel="noopener">https://www.garant.ru/hotlaw/moscow/698675/</a></li>
+        <li>Закон г. Москвы № 56 от 06.11.2002 «Об организации местного самоуправления в городе Москве», с изменениями до закона № 4 от 25.03.2026<a href="https://www.mos.ru/authority/documents/doc/8228220/" target="_blank" rel="noopener">https://www.mos.ru/authority/documents/doc/8228220/</a><a href="https://base.garant.ru/379237/" target="_blank" rel="noopener">https://base.garant.ru/379237/</a></li>
+        <li>Закон г. Москвы № 19 от 16.04.2025<a href="https://moskva-pravo.ru/zakon/2025/04/16/n-19/" target="_blank" rel="noopener">https://moskva-pravo.ru/zakon/2025/04/16/n-19/</a></li>
+        <li>Устав г. Москвы, ст. 36<span style="display:block">[ссылка]</span></li>
+      </ol>
+    </details>
+  </div>
+</div>
+
+<script>
+(function () {
+  var d = document, root = d.documentElement;
+  root.classList.add('js');
+
+  /* появление блоков снизу */
+  var rv = [].slice.call(d.querySelectorAll('.rv'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    rv.forEach(function (el) { io.observe(el); });
+  } else { rv.forEach(function (el) { el.classList.add('in'); }); }
+
+  /* район */
+  var pins = [].slice.call(d.querySelectorAll('.pin'));
+  var chips = [].slice.call(d.querySelectorAll('.chip'));
+  var places = [].slice.call(d.querySelectorAll('.place'));
+  var sheet = d.getElementById('sheet'), body = d.getElementById('sheetBody');
+  var head = d.getElementById('sheetHead'), map = d.getElementById('map');
+  var scroller = d.getElementById('illScroll'), cnt = d.getElementById('cnt');
+  var bar = [].slice.call(d.querySelectorAll('.bar i'));
+  var desk = window.matchMedia('(min-width:1024px)');
+  var visited = {}, cur = 0, trigger = null;
+
+  function byPlace(list, n) { return list.filter(function (el) { return el.getAttribute('data-place') === String(n); })[0]; }
+
+  function showPinInView(n) {
+    var pin = byPlace(pins, n);
+    if (!pin || scroller.scrollWidth <= scroller.clientWidth + 2) return;
+    var x = pin.offsetLeft - scroller.clientWidth / 2;
+    scroller.scrollLeft = Math.max(0, x);
+  }
+
+  function open(n, from) {
+    n = Number(n);
+    if (from) trigger = from;
+    cur = n;
+    places.forEach(function (p) { p.hidden = p.getAttribute('data-place') !== String(n); });
+    sheet.setAttribute('aria-labelledby', 'h-place-' + n);
+    var wasHidden = sheet.hidden;
+    sheet.hidden = false;
+    map.classList.add('has-card');
+    if (wasHidden || !desk.matches) { sheet.classList.remove('rise'); void sheet.offsetWidth; sheet.classList.add('rise'); }
+    pins.concat(chips).forEach(function (el) {
+      var on = el.getAttribute('data-place') === String(n);
+      el.classList.toggle('sel', on);
+      el.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    if (!visited[n]) {
+      visited[n] = true;
+      var k = Object.keys(visited).length;
+      cnt.textContent = k;
+      bar.forEach(function (b, i) { b.classList.toggle('on', i < k); });
+    }
+    byPlace(pins, n).classList.add('vis');
+    byPlace(chips, n).classList.add('vis');
+    body.scrollTop = 0;
+    showPinInView(n);
+    var h = d.getElementById('h-place-' + n);
+    try { h.focus({ preventScroll: true }); } catch (e) { h.focus(); }
+  }
+
+  function close(keepFocus) {
+    if (sheet.hidden) return;
+    sheet.hidden = true;
+    sheet.style.transform = '';
+    map.classList.remove('has-card');
+    pins.concat(chips).forEach(function (el) { el.classList.remove('sel'); el.setAttribute('aria-pressed', 'false'); });
+    cur = 0;
+    if (!keepFocus && trigger) { try { trigger.focus({ preventScroll: true }); } catch (e) { trigger.focus(); } }
+  }
+
+  pins.concat(chips).forEach(function (el) {
+    el.setAttribute('aria-pressed', 'false');
+    el.addEventListener('click', function () { open(el.getAttribute('data-place'), el); });
+  });
+  d.getElementById('close').addEventListener('click', function () { close(false); });
+  d.addEventListener('keydown', function (e) { if ((e.key === 'Escape' || e.key === 'Esc') && !sheet.hidden) close(false); });
+
+  [].slice.call(d.querySelectorAll('.next')).forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-next');
+      if (t === 'quiz') {
+        close(true);
+        var q = d.getElementById('quiz');
+        q.scrollIntoView();
+        var h = d.getElementById('h-quiz');
+        try { h.focus({ preventScroll: true }); } catch (e) { h.focus(); }
+      } else { open(t); }
+    });
+  });
+
+  /* жест вниз закрывает нижний лист */
+  var y0 = null, dy = 0, drag = false, fromHead = false;
+  sheet.addEventListener('touchstart', function (e) {
+    if (desk.matches || e.touches.length !== 1) return;
+    fromHead = head.contains(e.target);
+    if (fromHead || body.scrollTop <= 0) { y0 = e.touches[0].clientY; dy = 0; drag = false; }
+  }, { passive: true });
+  sheet.addEventListener('touchmove', function (e) {
+    if (y0 === null) return;
+    dy = e.touches[0].clientY - y0;
+    if (dy > 0 && (fromHead || body.scrollTop <= 0)) {
+      drag = true;
+      if (e.cancelable) e.preventDefault();
+      sheet.style.transform = 'translateY(' + dy + 'px)';
+    } else if (!drag) { y0 = null; }
+  }, { passive: false });
+  function endDrag() {
+    if (drag) { if (dy > 80) close(false); else sheet.style.transform = ''; }
+    y0 = null; drag = false; dy = 0;
+  }
+  sheet.addEventListener('touchend', endDrag);
+  sheet.addEventListener('touchcancel', endDrag);
+
+  desk.addEventListener && desk.addEventListener('change', function () { sheet.style.transform = ''; });
+
+  /* перетаскивание иллюстрации мышью */
+  var px = null, pLeft = 0, moved = false;
+  scroller.addEventListener('pointerdown', function (e) {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    px = e.clientX; pLeft = scroller.scrollLeft; moved = false;
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (px === null) return;
+    var dx = e.clientX - px;
+    if (!moved && Math.abs(dx) > 5) { moved = true; scroller.classList.add('dragging'); }
+    if (moved) { scroller.scrollLeft = pLeft - dx; e.preventDefault(); }
+  });
+  window.addEventListener('pointerup', function () {
+    if (px === null) return;
+    px = null; scroller.classList.remove('dragging');
+    setTimeout(function () { moved = false; }, 0);
+  });
+  scroller.addEventListener('click', function (e) { if (moved) { e.stopPropagation(); e.preventDefault(); } }, true);
+  scroller.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+  /* правда или миф */
+  [].slice.call(d.querySelectorAll('.q')).forEach(function (card) {
+    var v = card.getAttribute('data-v');
+    var btns = [].slice.call(card.querySelectorAll('.q-btns .btn'));
+    var res = card.querySelector('.q-res > div');
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (card.classList.contains('done')) return;
+        card.classList.add('done');
+        btns.forEach(function (x) {
+          x.disabled = true;
+          if (x.getAttribute('data-a') === v) x.classList.add('ok');
+        });
+        b.setAttribute('aria-pressed', 'true');
+        if (v === 'part') b.classList.add('pick-part'); else if (b.getAttribute('data-a') !== v) b.classList.add('pick');
+        res.hidden = false;
+      });
+    });
+  });
+
+  /* «Начать» — к району без смены адреса */
+  var start = d.querySelector('.cover-cta a');
+  start.addEventListener('click', function (e) {
+    e.preventDefault();
+    d.getElementById('district').scrollIntoView();
+    var h = d.getElementById('h-district');
+    try { h.focus({ preventScroll: true }); } catch (err) { h.focus(); }
+  });
+
+  /* ссылки-заглушки не ведут никуда, пока их не заменят */
+  [].slice.call(d.querySelectorAll('a[data-todo]')).forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); });
+  });
+})();
+</script>
+</body>
+</html>

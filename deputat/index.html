@@ -671,6 +671,13 @@ h1#h-cover{-webkit-text-stroke:.032em currentColor;letter-spacing:.004em}
   var LAST = screens.length - 1;
   var nextBtn = d.getElementById('next'), backBtn = d.getElementById('back');
   var stepLbl = d.getElementById('stepLbl');
+  var themeMeta = d.querySelector('meta[name="theme-color"]'), themeNow = '';
+  function setTheme(c) {
+    if (c === themeNow) return; themeNow = c;
+    if (themeMeta) themeMeta.setAttribute('content', c);
+    d.documentElement.style.backgroundColor = c;
+    try { if (window.parent !== window) window.parent.postMessage({ yd: 'theme', color: c }, '*'); } catch (e) {}
+  }
   var dots = [].slice.call(d.querySelectorAll('.dots i'));
   var qcards = [].slice.call(d.querySelectorAll('.q'));
   var tablet = window.matchMedia('(min-width:768px)');
@@ -727,6 +734,7 @@ h1#h-cover{-webkit-text-stroke:.032em currentColor;letter-spacing:.004em}
     nextBtn.disabled = i === LAST;
     app.classList.toggle('on-final', i === LAST);
     stepLbl.textContent = i === 0 ? '' : 'Шаг ' + i + ' из ' + LAST;
+    setTheme(i === LAST ? '#08803D' : '#202123');
     dots.forEach(function (dt, k) { dt.className = k === i ? 'cur' : (k < i ? 'done' : ''); });
     sizes();
     replay(s);

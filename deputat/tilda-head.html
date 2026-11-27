@@ -1,0 +1,16 @@
+<!-- Tilda: «Настройки страницы» → «Дополнительно» → «Html-код для вставки внутрь HEAD».
+     Цвет верхней полосы браузера (iPhone, Android): тёмный, на финальном экране зелёный.
+     Интерактив сам сообщает цвет через postMessage при смене экрана. -->
+<meta name="theme-color" content="#202123">
+<style id="yd-theme">html,body,#allrecords{background-color:#202123}</style>
+<script>
+window.addEventListener('message', function (e) {
+  if (e.origin !== 'https://doctortima.github.io' || !e.data || e.data.yd !== 'theme') return;
+  var c = e.data.color;
+  if (c !== '#202123' && c !== '#08803D') return;
+  var m = document.querySelector('meta[name="theme-color"]');
+  if (m) m.setAttribute('content', c);
+  var s = document.getElementById('yd-theme');
+  if (s) s.textContent = 'html,body,#allrecords{background-color:' + c + '}';
+});
+</script>

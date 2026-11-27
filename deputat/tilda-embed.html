@@ -1,8 +1,14 @@
-<!-- Tilda: блок T123 «HTML-код», отступы сверху и снизу = 0.
+<!-- Tilda: блок T123 «HTML-код» на странице yabloko-interactive.ru/deputat.
      Интерактив открывается на весь экран и прокручивается внутри рамки.
+     Скрытые заголовок и описание — для поисковиков и экранных чтецов.
      Ставьте этот блок на отдельную страницу, без других блоков. -->
 <style>
   .yd-frame{display:block;width:100%;height:100vh;border:0;margin:0;padding:0}
   @supports (height:100dvh){.yd-frame{height:100dvh}}
+  .yd-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 </style>
-<iframe class="yd-frame" src="https://doctortima.github.io/YABLOKO/deputat/" title="Что может муниципальный депутат?"></iframe>
+<div class="yd-sr">
+  <h1>Что может муниципальный депутат?</h1>
+  <p>Короткий интерактив Московского Яблока: что совет депутатов решает в вашем районе — двор, дом, сквер у дома — и где граница его полномочий. Выборы в советы депутатов — сентябрь 2027.</p>
+</div>
+<iframe class="yd-frame" src="https://doctortima.github.io/YABLOKO/deputat/" title="Что может муниципальный депутат?" allow="fullscreen"></iframe>
